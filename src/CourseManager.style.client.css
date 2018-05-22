@@ -1,0 +1,16 @@
+#newCourseFld{
+float: right;
+}
+
+.wbdv-newCourseBtn{
+    color: red;
+    background-color: white;
+    border-radius: 50%;
+}
+body{
+    background-color: #F0F0F0;
+}
+
+#courseTable{
+    background-color: #FFFFFF;
+}
