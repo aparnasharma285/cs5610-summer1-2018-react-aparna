@@ -34,7 +34,7 @@ export default class LessonService {
             }).catch(function (){return {};})
     }
 
-    createModule(courseId, moduleId, lesson) {
+    createLesson(courseId, moduleId, lesson) {
         return fetch((LESSON_API_CREATE_URL.replace('CID', courseId)).replace('MID', moduleId),
             {
                 body: JSON.stringify(lesson),

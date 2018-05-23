@@ -43,8 +43,7 @@ export default class ModuleService {
     }
 
     deleteModule(moduleId) {
-        return fetch(SPECIFIC_MODULE_API_URL.replace
-        ('MID', moduleId), {
+        return fetch(ALL_MODULE_API_URL+'/'+moduleId, {
             method: 'delete'
         })
     }
