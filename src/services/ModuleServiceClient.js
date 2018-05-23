@@ -1,6 +1,5 @@
-const MODULE_API_URL =
-    'http://localhost:8080/api/course/CID/module';
-const MODULE_API_DELETE_URL = 'http://localhost:8080/api/module/MODULE_ID';
+const MODULE_API_URL = 'http://localhost:8080/api/course/CID/module';
+const ALL_MODULE_API_URL = 'http://localhost:8080/api/module';
 
 let _singleton = Symbol();
 export default class ModuleService {
@@ -15,7 +14,22 @@ export default class ModuleService {
                 .replace('CID', courseId))
             .then(function (response) {
                 return response.json();
-            }).catch()
+            }).catch(function (){return {};})
+    }
+
+    findAllModules() {
+        return fetch(
+            ALL_MODULE_API_URL)
+            .then(function (response) {
+                return response.json();
+            }).catch(function (){return {};})
+    }
+
+    findModulesById(moduleId) {
+        return fetch(ALL_MODULE_API_URL+'/'+moduleId)
+            .then(function (response) {
+                return response.json();
+            }).catch(function (){return {};})
     }
 
     createModule(courseId, module) {
@@ -28,17 +42,19 @@ export default class ModuleService {
         { return response.json(); })
     }
 
+    deleteModule(moduleId) {
+        return fetch(SPECIFIC_MODULE_API_URL.replace
+        ('MID', moduleId), {
+            method: 'delete'
+        })
+    }
+
     static get instance() {
         if(!this[_singleton])
             this[_singleton] = new ModuleService(_singleton);
         return this[_singleton]
     }
 
-    deleteModule(moduleId) {
-        return fetch(MODULE_API_DELETE_URL.replace
-        ('MODULE_ID', moduleId), {
-            method: 'delete'
-        })
-    }
+
 
 }
