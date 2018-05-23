@@ -38,11 +38,8 @@ export default class ModuleEditor
 
     render() {
         return (
-            <div>
                 <LessonTabs
                     courseId={this.state.courseId} moduleId={this.state.moduleId}/>
-            </div>
-
         )
     }
 }

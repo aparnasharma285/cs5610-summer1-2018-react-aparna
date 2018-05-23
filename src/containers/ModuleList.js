@@ -87,24 +87,28 @@ export default class ModuleList extends Component {
     render() {
         return (
             <Router>
-                <div className='container-fluid'>
-                <div className='row'>
-                    <div className="col-4 wbdv-moduleListSideBar">
-                        <div className='bg-dark wbdv-courseTitleBar'>
-                            <b>{this.props.course.title}</b>
+                <div>
+                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <a className="navbar-brand col-3" href="#">{this.props.course.title}</a>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse col-9">
+                            <Route path="/course/:courseId/module/:moduleId"
+                                   component={ModuleEditor} />
                         </div>
-                        <div className="container wbdv-module-list-box">
-                        {this.renderModules()}
-                        <input placeholder="New Module" value={this.state.module.title} onChange={this.setModuleTitle}/>
-                        <i className='fa fa-plus' id='createNewModuleBtn' onClick={this.createModule}></i>
+                    </nav>
+                        <div className="row">
+                            <div className="col-4 bg-dark wbdv-module-list-box">
+                            {this.renderModules()}<br/>
+                            <input placeholder=" New Module" id='newModuleFld'
+                                   value={this.state.module.title} onChange={this.setModuleTitle}/>
+                                &nbsp;<i className='fa fa-plus' id='createNewModuleBtn' onClick={this.createModule}></i>
+                        </div>
                         </div>
                     </div>
-                    <div className="col-8 ">
-                        <Route path="/course/:courseId/module/:moduleId"
-                               component={ModuleEditor}/>
-                    </div>
-                </div>
-                </div>
             </Router>
 
         );

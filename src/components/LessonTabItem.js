@@ -9,12 +9,12 @@ export default class LessonTabItem extends React.Component {
 
     render() {
         return (
-            <li>{this.props.lesson.title}
-                <i className='fa fa-times' onClick={() => {
+            <div>{this.props.lesson.title}&nbsp;
+                <i id='deleteLessonBtn' className='fa fa-times' onClick={() => {
                     this.props.deleteLesson(this.props.lesson.id)
                 }}>
                 </i>
-            </li>
+            </div>
         )
     }
 }

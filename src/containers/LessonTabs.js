@@ -71,34 +71,33 @@ export default class LessonTabs extends Component {
 
     renderLessons() {
         let lessons = this.state.lessons.map((lesson) => {
-            return <LessonTabItem key={lesson.id} lesson={lesson} moduleId={this.state.moduleId}
-                                  courseId={this.state.courseId}
-                                  deleteLesson={this.deleteLesson} />
+            return (
+                <li className="nav-item" style={{"display":"inline-block"}}>
+                    <a className="nav-link" href="#">
+                        <LessonTabItem key={lesson.id} lesson={lesson} moduleId={this.state.moduleId}
+                                       courseId={this.state.courseId}
+                                       deleteLesson={this.deleteLesson}/>
+                    </a>
+                </li>)
         });
         return (
-            <ul>{lessons}</ul>
+            <ul className="navbar-nav mr-autos col">{lessons}</ul>
         )
     }
 
     deleteLesson(lessonId) {
         this.lessonService.deleteLesson(lessonId)
-            .then(this.findAllLessonsForModule(this.state.moduleId,this.state.courseId))
+            .then(this.findAllLessonsForModule(this.state.moduleId, this.state.courseId))
     }
 
     render() {
         return (
-            <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark wbdv-courseTitleBar">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-                </nav>
+                <div className='row'>
                 {this.renderLessons()}
-                <input placeholder="New Lesson" value={this.state.lesson.title} onChange={this.setLessonTitle}/>
-                <button onClick={this.createLesson}>Create</button>
-            </div>
+                <input id='newLessonFld' className='form-control-sm' placeholder="New Lesson" value={this.state.lesson.title} onChange={this.setLessonTitle}/>
+                <i id='createNewLessonBtn' className='fa fa-2x fa-plus' onClick={this.createLesson}></i>
+                </div>
+
         );
     }
 
