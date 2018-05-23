@@ -1,6 +1,6 @@
 import React from 'react'
 import CourseServiceClient from '../services/CourseServiceClient';
-import CourseEditorNavBar from "../components/CourseEditorNavBar";
+import ModuleList from './ModuleList';
 
 export default class CourseEditor extends React.Component {
 
@@ -14,6 +14,10 @@ export default class CourseEditor extends React.Component {
         this.selectCourse(this.props.match.params.courseId);
     }
 
+    componentWillReceiveProps(newProps) {
+        this.selectCourse(newProps.match.params.courseId);
+    }
+
     selectCourse(courseId) {
         this.setState({courseId: courseId});
         this.courseService.findCourseById(courseId)
@@ -23,9 +27,12 @@ export default class CourseEditor extends React.Component {
     render() {
 
         return (
-            <div className="wbdv-courseEditorBlock">
-                <CourseEditorNavBar course={this.state.course}/>
-                </div>
+            <div>
+                <h3>Course {this.state.courseId}
+                </h3>
+                <ModuleList
+                    courseId={this.state.courseId}/>
+            </div>
         );
     }
 }
