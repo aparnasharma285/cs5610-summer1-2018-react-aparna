@@ -28,11 +28,8 @@ export default class CourseEditor extends React.Component {
 
         return (
             <div>
-                <div className='col-xs-6 col-md-4 bg-dark wbdv-moduleTopBar'>
-                    <b>{this.state.course.title}</b>
-                </div>
                 <ModuleList
-                    courseId={this.state.courseId}/>
+                    courseId={this.state.courseId} course={this.state.course}/>
             </div>
         );
     }

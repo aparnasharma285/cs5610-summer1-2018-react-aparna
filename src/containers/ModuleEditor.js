@@ -39,8 +39,6 @@ export default class ModuleEditor
     render() {
         return (
             <div>
-                <h3>{this.state.courseId}<br/>{this.state.moduleId}
-                </h3>
                 <LessonTabs
                     courseId={this.state.courseId} moduleId={this.state.moduleId}/>
             </div>

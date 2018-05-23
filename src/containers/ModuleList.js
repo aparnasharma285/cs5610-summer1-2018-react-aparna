@@ -79,7 +79,7 @@ export default class ModuleList extends Component {
                                    delete={this.deleteModule}/>
         });
         return (
-            <ul>{modules}</ul>
+            <ul className="list-group">{modules}</ul>
         )
 
     }
@@ -87,16 +87,23 @@ export default class ModuleList extends Component {
     render() {
         return (
             <Router>
-                <div className="row">
-                    <div className="col-4">
+                <div className='container-fluid'>
+                <div className='row'>
+                    <div className="col-4 wbdv-moduleListSideBar">
+                        <div className='bg-dark wbdv-courseTitleBar'>
+                            <b>{this.props.course.title}</b>
+                        </div>
+                        <div className="container wbdv-module-list-box">
                         {this.renderModules()}
                         <input placeholder="New Module" value={this.state.module.title} onChange={this.setModuleTitle}/>
-                        <button onClick={this.createModule}>Create</button>
+                        <i className='fa fa-plus' id='createNewModuleBtn' onClick={this.createModule}></i>
+                        </div>
                     </div>
-                    <div className="col-8">
+                    <div className="col-8 ">
                         <Route path="/course/:courseId/module/:moduleId"
                                component={ModuleEditor}/>
                     </div>
+                </div>
                 </div>
             </Router>
 

@@ -88,6 +88,13 @@ export default class LessonTabs extends Component {
     render() {
         return (
             <div>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark wbdv-courseTitleBar">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item active">
+                            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </nav>
                 {this.renderLessons()}
                 <input placeholder="New Lesson" value={this.state.lesson.title} onChange={this.setLessonTitle}/>
                 <button onClick={this.createLesson}>Create</button>
