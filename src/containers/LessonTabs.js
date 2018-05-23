@@ -72,7 +72,7 @@ export default class LessonTabs extends Component {
     renderLessons() {
         let lessons = this.state.lessons.map((lesson) => {
             return (
-                <li className="nav-item" style={{"display":"inline-block"}}>
+                <li className="nav-item">
                     <a className="nav-link" href="#">
                         <LessonTabItem key={lesson.id} lesson={lesson} moduleId={this.state.moduleId}
                                        courseId={this.state.courseId}

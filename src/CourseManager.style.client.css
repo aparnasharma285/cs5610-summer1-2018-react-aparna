@@ -61,6 +61,16 @@ body {
     background-color: #4b5154;
 }
 
+list-group-item-action:hover{
+    background-color: #2990ea;
+}
+a{
+    color: #FFFFFF;
+}
+
+a:hover{
+    color: #FFFFFF;
+}
 #deleteModuleBtn{
     float: right;
 }
@@ -71,6 +81,10 @@ body {
     float: right;
 }
 #createNewLessonBtn{
+    color: #FFFFFF;
+}
+
+#deleteModuleBtn{
     color: #FFFFFF;
 }
 
