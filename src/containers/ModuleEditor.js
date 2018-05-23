@@ -7,8 +7,8 @@ export default class ModuleEditor
     constructor(props) {
         super(props);
         this.state = {courseId: '',
-                      moduleId: '',
-                      module:[]
+            moduleId: '',
+            module:[]
         };
 
         this.setCourseId = this.setCourseId.bind(this);
@@ -45,6 +45,6 @@ export default class ModuleEditor
                     courseId={this.state.courseId} moduleId={this.state.moduleId}/>
             </div>
 
-    )
+        )
     }
 }
