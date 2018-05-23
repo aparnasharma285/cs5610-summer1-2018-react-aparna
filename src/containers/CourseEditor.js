@@ -28,7 +28,7 @@ export default class CourseEditor extends React.Component {
 
         return (
             <div>
-                <h3>Course {this.state.courseId}
+                <h3>{this.state.course.title}
                 </h3>
                 <ModuleList
                     courseId={this.state.courseId}/>

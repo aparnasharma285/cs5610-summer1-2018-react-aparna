@@ -1,5 +1,6 @@
 const MODULE_API_URL =
     'http://localhost:8080/api/course/CID/module';
+const MODULE_API_DELETE_URL = 'http://localhost:8080/api/module/MODULE_ID';
 
 let _singleton = Symbol();
 export default class ModuleService {
@@ -14,7 +15,7 @@ export default class ModuleService {
                 .replace('CID', courseId))
             .then(function (response) {
                 return response.json();
-            })
+            }).catch()
     }
 
     createModule(courseId, module) {
@@ -32,4 +33,12 @@ export default class ModuleService {
             this[_singleton] = new ModuleService(_singleton);
         return this[_singleton]
     }
+
+    deleteModule(moduleId) {
+        return fetch(MODULE_API_DELETE_URL.replace
+        ('MODULE_ID', moduleId), {
+            method: 'delete'
+        })
+    }
+
 }
