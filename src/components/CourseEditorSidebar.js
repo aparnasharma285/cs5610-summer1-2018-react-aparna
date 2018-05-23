@@ -1,6 +1,6 @@
 import React from 'react'
 import CourseServiceClient from '../services/CourseServiceClient';
-import CourseEditorNavBar from "../components/CourseEditorNavBar";
+import ModuleList from '../containers/ModuleList';
 
 export default class CourseEditorSidebar extends React.Component {
     constructor(props) {
@@ -12,6 +12,7 @@ export default class CourseEditorSidebar extends React.Component {
     render(){
         return(
             <div className='col-4 wbdv-courseSidebar'>
+                <ModuleList/>
             </div>
         );
     }

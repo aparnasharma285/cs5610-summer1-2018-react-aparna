@@ -1,5 +1,4 @@
 import React from 'react'
-import ModuleList from './ModuleList';
 import CourseServiceClient from '../services/CourseServiceClient';
 import CourseEditorNavBar from "../components/CourseEditorNavBar";
 
