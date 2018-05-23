@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import CourseManager from './containers/CourseManager';
+import './CourseManager.style.client.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+
+ReactDOM.render(
+    <div className="courseManagerIndex">
+        <CourseManager/>
+    </div>,
+    document.getElementById('root'));
+

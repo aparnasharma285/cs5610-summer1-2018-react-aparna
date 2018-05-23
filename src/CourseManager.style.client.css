@@ -13,4 +13,29 @@ body{
 
 #courseTable{
     background-color: #FFFFFF;
+    border: 1px solid;
+    border-color: gainsboro;
+}
+
+.wbdv-courseGrid {
+    padding: 15px 15px;
+}
+.wbdv-courseGridItem{
+
+    border-bottom: 1px solid;
+    line-height: 50px;
+    border-color: gainsboro;
+
+}
+
+.wbdv-courseGridItem:last-child{
+    border-bottom: 0px;
+}
+
+.wbdv-courseGridHearder{
+    text-align: center;
+    border-bottom: 1px solid #E8E8E8;
+    line-height: 50px;
+
+
 }
