@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleServiceClient';
 import ModuleEditor from './ModuleEditor';
+import LessonEditor from './LessonEditor';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 export default class ModuleList extends Component {
@@ -68,10 +69,9 @@ export default class ModuleList extends Component {
             .deleteModule(moduleId)
             .then(() => {
                 this.findAllModulesForCourse
-                (this.state.courseId)
-            });
+                (this.state.courseId)})
+        };
 
-    }
 
     renderModules() {
         let modules = this.state.modules.map((module) => {
@@ -89,7 +89,7 @@ export default class ModuleList extends Component {
             <Router>
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <a className="navbar-brand col-3" href="#">{this.props.course.title}</a>
+                        <a className="navbar-brand col-3" href="#"><b>{this.props.course.title}</b></a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false"
                                 aria-label="Toggle navigation">
@@ -101,12 +101,18 @@ export default class ModuleList extends Component {
                         </div>
                     </nav>
                         <div className="row">
-                            <div className="col-4 bg-dark wbdv-module-list-box">
+                            <div className="col-3 bg-dark wbdv-module-list-box">
                             {this.renderModules()}<br/>
                             <input placeholder=" New Module" id='newModuleFld'
                                    value={this.state.module.title} onChange={this.setModuleTitle}/>
                                 &nbsp;<i className='fa fa-plus' id='createNewModuleBtn' onClick={this.createModule}></i>
                         </div>
+                            <div className="col-9">
+                                <div className="container wbdv-lesson-container">
+                                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                                       component={LessonEditor} />
+                                </div>
+                            </div>
                         </div>
                     </div>
             </Router>

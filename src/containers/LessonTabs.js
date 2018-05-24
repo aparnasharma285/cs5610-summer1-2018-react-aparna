@@ -81,7 +81,7 @@ export default class LessonTabs extends Component {
                 </li>)
         });
         return (
-            <ul className="navbar-nav mr-autos col">{lessons}</ul>
+            <ul className="nav nav-pills mr-autos col">{lessons}</ul>
         )
     }
 
@@ -92,11 +92,12 @@ export default class LessonTabs extends Component {
 
     render() {
         return (
-                <div className='row'>
+            <div className='row'>
                 {this.renderLessons()}
-                <input id='newLessonFld' className='form-control-sm' placeholder="New Lesson" value={this.state.lesson.title} onChange={this.setLessonTitle}/>
-                <i id='createNewLessonBtn' className='fa fa-2x fa-plus' onClick={this.createLesson}></i>
-                </div>
+                    &nbsp;&nbsp;<input id='newLessonFld' className='form-control-sm' placeholder="New Lesson"
+                           value={this.state.lesson.title} onChange={this.setLessonTitle}/>&nbsp;
+                    <i id='createNewLessonBtn' className='fa fa-2x fa-plus' onClick={this.createLesson}></i>
+            </div>
 
         );
     }

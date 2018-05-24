@@ -10,7 +10,7 @@ export default class CourseRow extends React.Component {
         return (
             <div className="row wbdv-courseGridItem">
                 <div className="col-3"><i className="fa fa-file"></i> &nbsp;
-                    <Link to={`/course/${this.props.course.id}`}>{this.props.course.title}</Link>
+                    <Link to={`/course/${this.props.course.id}`} className="wbdv-courseName">{this.props.course.title}</Link>
                 </div>
                 <div className="col-3">me</div>
                 <div className="col-3">{this.props.course.modified}</div>

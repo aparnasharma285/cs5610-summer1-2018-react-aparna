@@ -8,6 +8,24 @@
     border-radius: 50%;
 }
 
+#root{
+    overflow-x: hidden;
+}
+.wbdv-courseName{
+    color: black;
+}
+.wbdv-courseName:hover{
+    color: black;
+}
+
+.fa-file{
+    color: #2990ea;
+}
+
+.nav-fill{
+    background-color: #4b5154;
+    border-radius: 7px;
+}
 body {
     background-color: #F0F0F0;
 }
@@ -79,6 +97,8 @@ a:hover{
 }
 #deleteLessonBtn{
     float: right;
+    margin-top: 8%;
+    margin-left: 10px;
 }
 #createNewLessonBtn{
     color: #FFFFFF;
@@ -93,6 +113,12 @@ a:hover{
     white-space: -moz-pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
+}
+
+.wbdv-lesson-container{
+    padding-right: 30px;
+    padding-top: 20px;
+
 }
 #newModuleFld{
     margin-left: 5px;
