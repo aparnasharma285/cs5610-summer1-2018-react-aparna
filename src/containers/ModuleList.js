@@ -89,6 +89,7 @@ export default class ModuleList extends Component {
             <Router>
                 <div>
                     <nav className="navbar navbar-expand-lg">
+                        <a href="/courses"><i className='fa fa-times'></i></a>
                         <a className="navbar-brand col-3" href="#"><b>{this.props.course.title}</b></a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false"
