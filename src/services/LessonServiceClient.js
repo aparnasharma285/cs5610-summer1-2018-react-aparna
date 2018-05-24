@@ -1,7 +1,7 @@
-const LESSON_API_CREATE_URL = 'http://localhost:8080/api/course/CID/module/MID/lesson';
-const LESSON_API_URL = 'http://localhost:8080/api/lesson';
-const LESSON_MODULE_API_URL ='http://localhost:8080/api/course/CID/module/MID/lesson';
-const SPECIFIC_LESSON_API_URL = 'http://localhost:8080/api/lesson/LID'
+const LESSON_API_CREATE_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/course/CID/module/MID/lesson';
+const LESSON_API_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/lesson';
+const LESSON_MODULE_API_URL ='https://cs5610-java-server-aparna.herokuapp.com/api/course/CID/module/MID/lesson';
+const SPECIFIC_LESSON_API_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/lesson/LID'
 
 let _singleton = Symbol();
 export default class LessonService {

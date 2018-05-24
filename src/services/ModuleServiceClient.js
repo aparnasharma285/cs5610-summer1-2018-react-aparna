@@ -1,5 +1,5 @@
-const MODULE_API_URL = 'http://localhost:8080/api/course/CID/module';
-const ALL_MODULE_API_URL = 'http://localhost:8080/api/module';
+const MODULE_API_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/course/CID/module';
+const ALL_MODULE_API_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/module';
 
 let _singleton = Symbol();
 export default class ModuleService {

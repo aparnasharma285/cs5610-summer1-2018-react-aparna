@@ -1,6 +1,6 @@
-const TOPIC_API_CREATE_URL = 'http://localhost:8080/api/lesson/LID/topic';
-const TOPIC_API_URL = 'http://localhost:8080/api/lesson/LID/topic';
-const TOPIC_DELETE_API_URL = 'http://localhost:8080/api/topic/TID';
+const TOPIC_API_CREATE_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/lesson/LID/topic';
+const TOPIC_API_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/lesson/LID/topic';
+const TOPIC_DELETE_API_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/topic/TID';
 
 
 let _singleton = Symbol();

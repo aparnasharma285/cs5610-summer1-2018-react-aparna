@@ -88,7 +88,7 @@ export default class ModuleList extends Component {
         return (
             <Router>
                 <div>
-                    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <nav className="navbar navbar-expand-lg">
                         <a className="navbar-brand col-3" href="#"><b>{this.props.course.title}</b></a>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false"
