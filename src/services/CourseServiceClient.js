@@ -1,5 +1,6 @@
 let _singleton = Symbol();
 const COURSE_API_URL = 'https://cs5610-java-server-aparna.herokuapp.com/api/course';
+const COURSE_API_URL_SORT = 'https://cs5610-java-server-aparna.herokuapp.com/api/course/sort';
 
 class CourseServiceClient {
     constructor(singletonToken) {
@@ -42,6 +43,13 @@ class CourseServiceClient {
         return fetch(COURSE_API_URL+'/'+courseId)
             .then(function (response) {
                 return response.json()});
+    }
+
+    sortList(){
+        return fetch(COURSE_API_URL_SORT)
+            .then(function (response) {
+                return response.json();
+            });
     }
 
 
