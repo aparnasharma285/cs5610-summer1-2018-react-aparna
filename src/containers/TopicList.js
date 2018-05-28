@@ -79,7 +79,7 @@ export default class TopicList extends Component {
     renderTopics() {
         let topics = this.state.topics.map((topic) => {
             return (
-                <li className="nav-item">
+                <li className="nav-item" key={topic.id}>
                     <a className="nav-link" href="#">
                         <TopicListItem key={topic.id} topic={topic} lessonId={this.state.lessonId}
                                        moduleId={this.state.moduleId}

@@ -1,4 +1,6 @@
 import React from 'react';
+import {Provider} from 'react-redux'
+import App,{store} from './WidgetList'
 
 export default class TopicEditor extends React.Component{
 
@@ -52,9 +54,12 @@ export default class TopicEditor extends React.Component{
         ({topicId: topicId});
     }
 
+
         render() {
             return (
-                <h1> check {this.state.topicId}</h1>
+                <Provider store={store}>
+                <App topicId={this.state.topicId}/>
+                </Provider>
             )
         }
     }

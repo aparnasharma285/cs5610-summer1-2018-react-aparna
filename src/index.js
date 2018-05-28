@@ -9,4 +9,3 @@ ReactDOM.render(
         <CourseManager/>
     </div>,
     document.getElementById('root'));
-
