@@ -3,6 +3,7 @@ import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleServiceClient';
 import ModuleEditor from './ModuleEditor';
 import LessonEditor from './LessonEditor';
+import TopicEditor from './TopicEditor';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 export default class ModuleList extends Component {
@@ -112,6 +113,10 @@ export default class ModuleList extends Component {
                                 <div className="container wbdv-lesson-container">
                                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                                        component={LessonEditor} />
+                                </div>
+                                <div className="container wbdv-topic-container">
+                                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                                           component={TopicEditor} />
                                 </div>
                             </div>
                         </div>
