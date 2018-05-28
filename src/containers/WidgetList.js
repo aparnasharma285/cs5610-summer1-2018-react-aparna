@@ -2,14 +2,16 @@ import React, {Component} from 'react'
 import {createStore} from 'redux'
 import {connect} from 'react-redux'
 
-const stateToPropertyMapper = (state) => ({
-    widgets: state.widgets
+const stateToPropertyMapper = (state,topicProps) => ({
+    widgets: state.widgets,
+    topicId:topicProps.topicId
 })
 
 const dispatcherToPropsMapper = dispatch => ({
     findAllWidgets: () => findAllWidgets(dispatch),
     addWidget: () => addWidget(dispatch),
-    deleteWidget: (id) => deleteWidget(dispatch,id)
+    deleteWidget: (id) => deleteWidget(dispatch,id),
+    saveWidget:() => saveWidget(dispatch)
 })
 
 
@@ -27,6 +29,7 @@ class WidgetList extends React.Component {
                     {this.props.widgets.map(widget => (<WidgetContainer key={widget.id} widget={widget} />))}
                 </ul>
                 <button onClick={this.props.addWidget}>Add</button>
+                <button onClick={this.props.saveWidget}>Save</button>
             </div>
         )
     }
@@ -45,6 +48,11 @@ export const addWidget = dispatch => (
     dispatch({type: 'Add'})
 )
 
+export const saveWidget = dispatch => (
+    dispatch({type: 'Save'})
+)
+
+
 const findAllWidgets = dispatch => {
     fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/topic/TID/widget').replace('TID',32))
         .then(response => (response.json()))
@@ -60,13 +68,6 @@ const deleteWidget = (dispatch,id) => (
     dispatch({type : 'Delete', id:id})
 )
 
-const initialState = {
-    widgets: [
-        {id: 1, text: 'widget 1'},
-        {id: 2, text: 'widget 2'},
-        {id: 3, text: 'widget 3'}
-    ]
-}
 
 let idCounter = 4
 const widgetReducer = (state = {widgets: []}, action) => {
@@ -78,8 +79,8 @@ const widgetReducer = (state = {widgets: []}, action) => {
                     {
                         id: state.widgets.length + 1,
                         text: 'New Widget',
-                        widgetType: 'Paragraph',
-                        size: '2'
+                        widgetType: 'Heading',
+                        size: '1'
                     }
                 ]
             }
@@ -93,8 +94,16 @@ const widgetReducer = (state = {widgets: []}, action) => {
             return {
                 widgets: action.widgets
             }
+
+        case 'Save':
+            fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/widget/save/TID').replace('TID',32), {
+                method: 'post',
+                body: JSON.stringify(state.widgets),
+                headers: {
+                    'content-type': 'application/json'}
+            })
         default:
-            return initialState
+            return state
     }
 }
 
