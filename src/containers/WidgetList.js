@@ -2,13 +2,66 @@ import React, {Component} from 'react'
 import {createStore} from 'redux'
 import {connect} from 'react-redux'
 
+let idCounter = 4
+const widgetReducer = (state = {widgets: [], topicId:0}, action) => {
+    switch (action.type) {
+        case 'Add':
+            return {
+                widgets: [
+                    ...state.widgets,
+                    {
+                        id: state.widgets.length + 1,
+                        text: 'New Widget',
+                        widgetType: 'Heading',
+                        size: '1'
+                    }
+                ],
+                topicId: state.topicId
+            }
+        case 'Delete':
+            return {
+                widgets: state.widgets.filter(widget => (
+                    widget.id !== action.id
+                )),
+
+                topicId: state.topicId
+            }
+        case 'Find':
+            return {
+                widgets: action.widgets,
+                topicId: state.topicId
+            }
+
+        case 'Save':
+            fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/widget/save/TID').replace('TID',state.topicId), {
+                method: 'post',
+                body: JSON.stringify(state.widgets),
+                headers: {
+                    'content-type': 'application/json'}
+            })
+            return state
+        case 'AssignTopicId':
+            return {
+                widgets: action.widgets,
+                topicId: action.topicId
+            }
+        default:
+            return state
+    }
+}
+
+export let store = createStore(widgetReducer)
+
+
 const stateToPropertyMapper = (state,topicProps) => ({
     widgets: state.widgets,
-    topicId:topicProps.topicId
+    topicId: state.topicId,
+    topicIdFromTopic:topicProps.topicId
 })
 
-const dispatcherToPropsMapper = dispatch => ({
-    findAllWidgets: () => findAllWidgets(dispatch),
+const dispatcherToPropsMapper = (dispatch,topicId) => ({
+    assignTopicId: (topicId) => assignTopicId(dispatch,topicId),
+    findAllWidgets: (topicId) => findAllWidgets(dispatch, topicId),
     addWidget: () => addWidget(dispatch),
     deleteWidget: (id) => deleteWidget(dispatch,id),
     saveWidget:() => saveWidget(dispatch)
@@ -18,9 +71,19 @@ const dispatcherToPropsMapper = dispatch => ({
 class WidgetList extends React.Component {
     constructor(props) {
         super(props)
-        this.props.findAllWidgets()
+
+
     }
 
+    componentWillReceiveProps(newProps) {
+        if(newProps.topicIdFromTopic != newProps.topicId) {
+            newProps.assignTopicId(newProps.topicIdFromTopic);
+
+        } else {
+            //newProps.findAllWidgets(newProps.topicId)
+        }
+
+    }
 
     render() {
         return (
@@ -33,8 +96,10 @@ class WidgetList extends React.Component {
             </div>
         )
     }
-
 }
+const App = connect(stateToPropertyMapper, dispatcherToPropsMapper)(WidgetList)
+
+
 
 const Widget = ({widget, deleteWidget}) => (
     <li key={widget.id}>
@@ -44,6 +109,8 @@ const Widget = ({widget, deleteWidget}) => (
 )
 const WidgetContainer = connect(null, dispatcherToPropsMapper)(Widget)
 
+
+
 export const addWidget = dispatch => (
     dispatch({type: 'Add'})
 )
@@ -52,9 +119,19 @@ export const saveWidget = dispatch => (
     dispatch({type: 'Save'})
 )
 
+export const assignTopicId = (dispatch,topicId) => (
+    fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/topic/TID/widget').replace('TID',topicId))
+        .then(response => (response.json()))
+        .then(widgets => dispatch({
+            type: 'AssignTopicId',
+            widgets: widgets,
+            topicId:topicId
+        }))
+)
 
-const findAllWidgets = dispatch => {
-    fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/topic/TID/widget').replace('TID',32))
+
+const findAllWidgets = (dispatch, topicId) => {
+    fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/topic/TID/widget').replace('TID',topicId))
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: 'Find',
@@ -68,48 +145,5 @@ const deleteWidget = (dispatch,id) => (
     dispatch({type : 'Delete', id:id})
 )
 
-
-let idCounter = 4
-const widgetReducer = (state = {widgets: []}, action) => {
-    switch (action.type) {
-        case 'Add':
-            return {
-                widgets: [
-                    ...state.widgets,
-                    {
-                        id: state.widgets.length + 1,
-                        text: 'New Widget',
-                        widgetType: 'Heading',
-                        size: '1'
-                    }
-                ]
-            }
-        case 'Delete':
-            return {
-                widgets: state.widgets.filter(widget => (
-                    widget.id !== action.id
-                ))
-            }
-        case 'Find':
-            return {
-                widgets: action.widgets
-            }
-
-        case 'Save':
-            fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/widget/save/TID').replace('TID',32), {
-                method: 'post',
-                body: JSON.stringify(state.widgets),
-                headers: {
-                    'content-type': 'application/json'}
-            })
-        default:
-            return state
-    }
-}
-
-
-export let store = createStore(widgetReducer)
-
-const App = connect(stateToPropertyMapper, dispatcherToPropsMapper)(WidgetList)
 
 export default App
