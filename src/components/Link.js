@@ -2,11 +2,12 @@ import React from 'react'
 import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
-const Link = ({widget,linkTextChanged,linkUrlChanged}) => {
+const Link = ({widget,linkTextChanged,linkUrlChanged,preview}) => {
     let inputElement
     let inputText
     return(
         <div>
+            <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
             <h1>Link Widget</h1>
             <input onChange={() => linkUrlChanged(widget.id, inputElement.value)}
                    value={widget.href}
@@ -17,7 +18,10 @@ const Link = ({widget,linkTextChanged,linkUrlChanged}) => {
                    ref={node => inputText = node}/>
 
             <h3>Preview</h3>
+            </div>
+            <div className='wbdv-widget-preview'>
             <a href={widget.href} target="_blank">{widget.text}</a>
+            </div>
         </div>
 
 

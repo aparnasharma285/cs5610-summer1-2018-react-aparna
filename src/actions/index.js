@@ -108,3 +108,17 @@ export const changeListType=(dispatch, widgetId, newListType) => (
         id: widgetId,
         listType: newListType})
 )
+
+export const widgetMoveUp =(dispatch, widget) => (
+    dispatch({
+        type: constants.MOVE_UP,
+        widget: widget
+    })
+)
+
+export const widgetMoveDown =(dispatch, widget) => (
+    dispatch({
+        type: constants.MOVE_DOWN,
+        widget: widget
+    })
+)

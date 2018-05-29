@@ -20,8 +20,15 @@ class WidgetList extends React.Component {
     render() {
         return (
             <div>
-                <button hidden={this.props.preview} onClick={this.props.saveWidget}>Save</button>
-                <button onClick={this.props.previewWidget}>Preview</button> <br/>
+                <button className='btn btn-success' id='saveWidgetsBtn'
+                        onClick={this.props.saveWidget}>Save
+                </button>
+
+                <label className="switch">
+                    <input type="checkbox" onClick={this.props.previewWidget}/>
+                    <span className="slider round"></span>
+                </label>
+
                 {this.props.widgets.map(widget => (<WidgetContainer key={widget.id} widget={widget}/>))}
                 <button onClick={this.props.addWidget}>Add</button>
 

@@ -1,4 +1,5 @@
 import * as constants from "../constants";
+import 'array.prototype.move';
 
 
 export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false}, action) => {
@@ -47,7 +48,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
             return state
 
         case constants.PREVIEW :
-            return{
+            return {
                 widgets: state.widgets,
                 preview: !state.preview,
                 topicId: state.topicId
@@ -129,6 +130,23 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     }
                     return Object.assign({}, widget)
                 }),
+                preview: state.preview,
+                topicId: state.topicId
+            }
+
+        case constants.MOVE_UP :
+            let index = state.widgets.indexOf(action.widget);
+            state.widgets.move(index, index - 1);
+            return {
+                widgets: (state.widgets.splice(0)),
+                preview: state.preview,
+                topicId: state.topicId
+            }
+        case constants.MOVE_DOWN :
+            index = state.widgets.indexOf(action.widget);
+            (state.widgets.move(index, index + 1))
+            return {
+                widgets: (state.widgets.splice(0)),
                 preview: state.preview,
                 topicId: state.topicId
             }
