@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {createStore} from 'redux'
 import {connect} from 'react-redux'
 
-let idCounter = 4
 const widgetReducer = (state = {widgets: [], topicId:0}, action) => {
     switch (action.type) {
         case 'Add':
@@ -79,8 +78,6 @@ class WidgetList extends React.Component {
         if(newProps.topicIdFromTopic != newProps.topicId) {
             newProps.assignTopicId(newProps.topicIdFromTopic);
 
-        } else {
-            //newProps.findAllWidgets(newProps.topicId)
         }
 
     }
