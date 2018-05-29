@@ -30,7 +30,7 @@ const List = ({widget, listTextChanged, changeListType,preview}) => {
             </div>
             <div className='wbdv-widget-preview'>
                 {widget.listType == 'ORDERED' && <ol>{listItems}</ol>}
-                {widget.listType == 'UNORDERED' && <ul>{listItems}</ul>}
+                {widget.listType !== 'ORDERED' && <ul>{listItems}</ul>}
             </div>
         </div>
     )
