@@ -8,7 +8,7 @@ const Heading = ({widget, changeHeadingSize,headingTextChanged}) => {
     return (
         <div>
             <div>
-                <h1> Heading size : {widget.size}</h1>
+                <h1> Heading Widget</h1>
 
                 <input onChange={() => headingTextChanged(widget.id, inputElement.value)}
                        value={widget.text}

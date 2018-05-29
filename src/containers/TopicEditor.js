@@ -57,9 +57,11 @@ export default class TopicEditor extends React.Component{
 
         render() {
             return (
+                <div><br/>
                 <Provider store={store}>
                 <App topicId={this.state.topicId}/>
                 </Provider>
+                </div>
             )
         }
     }

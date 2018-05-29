@@ -59,3 +59,9 @@ export const headingTextChanged = (dispatch, widgetId, newText) => (
         text: newText})
 )
 
+export const previewWidget =(dispatch) =>(
+    dispatch({
+        type : constants.PREVIEW
+    })
+)
+

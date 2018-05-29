@@ -1,8 +1,10 @@
 import * as constants from "../constants";
 
 
-export const widgetReducer = (state = {widgets: [], topicId: 0}, action) => {
+export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false}, action) => {
+    let newState
     switch (action.type) {
+
         case constants.ADD:
             return {
                 widgets: [
@@ -14,19 +16,23 @@ export const widgetReducer = (state = {widgets: [], topicId: 0}, action) => {
                         size: '1'
                     }
                 ],
+                preview: state.preview,
                 topicId: state.topicId
             }
+
         case constants.DELETE:
             return {
                 widgets: state.widgets.filter(widget => (
                     widget.id !== action.id
                 )),
-
+                preview: state.preview,
                 topicId: state.topicId
             }
+
         case constants.FIND:
             return {
                 widgets: action.widgets,
+                preview: state.preview,
                 topicId: state.topicId
             }
 
@@ -39,11 +45,21 @@ export const widgetReducer = (state = {widgets: [], topicId: 0}, action) => {
                 }
             })
             return state
+
+        case constants.PREVIEW :
+            return{
+                widgets: state.widgets,
+                preview: !state.preview,
+                topicId: state.topicId
+            }
+
         case constants.ASSIGN_TOPIC_ID:
             return {
                 widgets: action.widgets,
+                preview: state.preview,
                 topicId: action.topicId
             }
+
         case constants.SELECT_WIDGET_TYPE:
             let newState = {
                 widgets: state.widgets.filter((widget) => {
@@ -52,9 +68,11 @@ export const widgetReducer = (state = {widgets: [], topicId: 0}, action) => {
                     }
                     return true;
                 }),
+                preview: state.preview,
                 topicId: state.topicId
             }
             return JSON.parse(JSON.stringify(newState))
+
         case constants.CHANGE_HEADING_SIZE:
             return {
                 widgets: state.widgets.map(widget => {
@@ -63,6 +81,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0}, action) => {
                     }
                     return Object.assign({}, widget)
                 }),
+                preview: state.preview,
                 topicId: state.topicId
             }
 
@@ -74,6 +93,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0}, action) => {
                     }
                     return Object.assign({}, widget)
                 }),
+                preview: state.preview,
                 topicId: state.topicId
             }
         default:

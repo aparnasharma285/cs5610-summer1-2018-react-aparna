@@ -22,8 +22,8 @@ const List = () => (
 export const Widget = ({widget, dispatch, deleteWidget, changeWidgetType}) => {
     let selectElement
     return (
-        <li key={widget.id}>
-            {widget.widgetType}
+        <div>
+
             <select value={widget.widgetType} onChange={e => (changeWidgetType(widget.id, selectElement.value))}
                     ref={node => selectElement = node}>
                 <option>Heading</option>
@@ -32,12 +32,14 @@ export const Widget = ({widget, dispatch, deleteWidget, changeWidgetType}) => {
                 <option>Image</option>
                 <option>List</option>
             </select>
+
             <button onClick={e => (deleteWidget(widget.id))}>Delete</button>
 
             <div>
-                {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
+                {widget.widgetType === 'Heading' && <HeadingContainer widget={widget}/>}
             </div>
-        </li>
+        </div>
+
     )
 }
 
