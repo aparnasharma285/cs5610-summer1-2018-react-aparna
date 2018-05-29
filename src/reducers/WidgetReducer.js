@@ -96,6 +96,30 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                 preview: state.preview,
                 topicId: state.topicId
             }
+
+        case constants.PARAGRAPH_TEXT_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.text = action.text
+                    }
+                    return Object.assign({}, widget)
+                }),
+                preview: state.preview,
+                topicId: state.topicId
+            }
+
+        case constants.IMAGE_URL_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.src = action.src
+                    }
+                    return Object.assign({}, widget)
+                }),
+                preview: state.preview,
+                topicId: state.topicId
+            }
         default:
             return state
     }

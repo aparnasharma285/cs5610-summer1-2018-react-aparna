@@ -65,3 +65,17 @@ export const previewWidget =(dispatch) =>(
     })
 )
 
+export const paragraphTextChanged=(dispatch, widgetId, newText) => (
+    dispatch({
+        type: constants.PARAGRAPH_TEXT_CHANGED,
+        id: widgetId,
+        text: newText})
+)
+
+export const imageUrlChanged=(dispatch, widgetId, newUrl) => (
+    dispatch({
+        type: constants.IMAGE_URL_CHANGED,
+        id: widgetId,
+        src: newUrl})
+)
+

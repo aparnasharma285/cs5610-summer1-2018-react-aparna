@@ -2,22 +2,8 @@ import React from 'react'
 import {connect} from "react-redux";
 import * as actions from "../actions/index";
 import {HeadingContainer} from './Heading'
-
-const Link = () => (
-    <h1>Link</h1>
-)
-
-const Paragraph = () => (
-    <h1>Paragraph</h1>
-)
-
-const Image = () => (
-    <h1>Image</h1>
-)
-
-const List = () => (
-    <h1>List</h1>
-)
+import {ParagraphContainer} from './Paragraph'
+import {ImageContainer} from './Image'
 
 export const Widget = ({widget, dispatch, deleteWidget, changeWidgetType}) => {
     let selectElement
@@ -37,6 +23,9 @@ export const Widget = ({widget, dispatch, deleteWidget, changeWidgetType}) => {
 
             <div>
                 {widget.widgetType === 'Heading' && <HeadingContainer widget={widget}/>}
+                {widget.widgetType === 'Paragraph' && <ParagraphContainer widget={widget}/>}
+                {widget.widgetType === 'Image' && <ImageContainer widget={widget}/>}
+                
             </div>
         </div>
 
