@@ -1,5 +1,5 @@
 import * as constants from "../constants";
-import {SELECT_WIDGET_TYPE} from "../constants";
+
 
 export const widgetReducer = (state = {widgets: [], topicId:0}, action) => {
     switch (action.type) {
@@ -44,7 +44,19 @@ export const widgetReducer = (state = {widgets: [], topicId:0}, action) => {
                 topicId: action.topicId
             }
         case constants.SELECT_WIDGET_TYPE:
-           console.log(action.widgetType)
+            let newState = {
+                widgets: state.widgets.filter((widget) => {
+                    if(widget.id === action.id) {
+                        widget.widgetType = action.widgetType
+                    }
+                    return true;
+                }),
+                topicId: state.topicId
+            }
+            return JSON.parse(JSON.stringify(newState))
+        case constants.CHANGE_HEADING_SIZE:
+            console.log(action.size)
+            return state
         default:
             return state
     }

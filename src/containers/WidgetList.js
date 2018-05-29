@@ -3,7 +3,7 @@ import {createStore} from 'redux'
 import {connect} from 'react-redux'
 import {widgetReducer} from "../reducers/WidgetReducer";
 import {WidgetContainer} from "../components/Widget";
-import {addWidget, saveWidget, findAllWidgets, assignTopicId} from "../actions/WidgetActions";
+import {addWidget, saveWidget, findAllWidgets, assignTopicId} from "../actions/index";
 
 class WidgetList extends React.Component {
     constructor(props) {
@@ -13,7 +13,6 @@ class WidgetList extends React.Component {
     componentWillReceiveProps(newProps) {
         if (newProps.topicIdFromTopic != newProps.topicId) {
             newProps.assignTopicId(newProps.topicIdFromTopic);
-
         }
 
     }

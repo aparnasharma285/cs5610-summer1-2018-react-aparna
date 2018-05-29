@@ -35,10 +35,19 @@ export const deleteWidget =(dispatch,widgetId) => (
     dispatch({type: constants.DELETE, id: widgetId})
 )
 
-export const changeWidgetType = (dispatch,widgetId, selectElement) => (
+export const changeWidgetType = (dispatch,widgetId, newType) => (
     dispatch({
         type: constants.SELECT_WIDGET_TYPE,
         id: widgetId,
-        widgetType: selectElement.value
+        widgetType: newType
     })
 )
+
+export const changeHeadingSize = (dispatch, widgetId, newSize) => (
+    dispatch({
+        type: constants.CHANGE_HEADING_SIZE,
+        id:widgetId,
+        size:newSize
+    })
+)
+
