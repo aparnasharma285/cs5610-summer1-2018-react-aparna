@@ -1,0 +1,51 @@
+import * as constants from "../constants";
+import {SELECT_WIDGET_TYPE} from "../constants";
+
+export const widgetReducer = (state = {widgets: [], topicId:0}, action) => {
+    switch (action.type) {
+        case constants.ADD:
+            return {
+                widgets: [
+                    ...state.widgets,
+                    {
+                        id: state.widgets.length + 1,
+                        text: 'New Widget',
+                        widgetType: 'Heading',
+                        size: '1'
+                    }
+                ],
+                topicId: state.topicId
+            }
+        case constants.DELETE:
+            return {
+                widgets: state.widgets.filter(widget => (
+                    widget.id !== action.id
+                )),
+
+                topicId: state.topicId
+            }
+        case constants.FIND:
+            return {
+                widgets: action.widgets,
+                topicId: state.topicId
+            }
+
+        case constants.SAVE:
+            fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/widget/save/TID').replace('TID',state.topicId), {
+                method: 'post',
+                body: JSON.stringify(state.widgets),
+                headers: {
+                    'content-type': 'application/json'}
+            })
+            return state
+        case constants.ASSIGN_TOPIC_ID:
+            return {
+                widgets: action.widgets,
+                topicId: action.topicId
+            }
+        case constants.SELECT_WIDGET_TYPE:
+           console.log(action.widgetType)
+        default:
+            return state
+    }
+}

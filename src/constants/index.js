@@ -1,0 +1,6 @@
+export const SAVE = 'SAVE'
+export const ASSIGN_TOPIC_ID = 'AssignTopicId'
+export const FIND ='Find'
+export const DELETE = 'Delete'
+export const ADD = 'Add'
+export const SELECT_WIDGET_TYPE = 'SelectWidgetType'
