@@ -85,19 +85,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                 topicId: state.topicId
             }
 
-        case constants.HEADING_TEXT_CHANGED:
-            return {
-                widgets: state.widgets.map(widget => {
-                    if (widget.id === action.id) {
-                        widget.text = action.text
-                    }
-                    return Object.assign({}, widget)
-                }),
-                preview: state.preview,
-                topicId: state.topicId
-            }
-
-        case constants.PARAGRAPH_TEXT_CHANGED:
+        case constants.WIDGET_TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
                     if (widget.id === action.id) {
@@ -114,6 +102,18 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                 widgets: state.widgets.map(widget => {
                     if (widget.id === action.id) {
                         widget.src = action.src
+                    }
+                    return Object.assign({}, widget)
+                }),
+                preview: state.preview,
+                topicId: state.topicId
+            }
+
+        case constants.LINK_URL_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.href = action.href
                     }
                     return Object.assign({}, widget)
                 }),

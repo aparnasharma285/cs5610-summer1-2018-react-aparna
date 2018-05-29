@@ -4,6 +4,7 @@ import * as actions from "../actions/index";
 import {HeadingContainer} from './Heading'
 import {ParagraphContainer} from './Paragraph'
 import {ImageContainer} from './Image'
+import {LinkContainer} from './Link'
 
 export const Widget = ({widget, dispatch, deleteWidget, changeWidgetType}) => {
     let selectElement
@@ -25,7 +26,7 @@ export const Widget = ({widget, dispatch, deleteWidget, changeWidgetType}) => {
                 {widget.widgetType === 'Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType === 'Paragraph' && <ParagraphContainer widget={widget}/>}
                 {widget.widgetType === 'Image' && <ImageContainer widget={widget}/>}
-                
+                {widget.widgetType === 'Link' && <LinkContainer widget={widget}/>}
             </div>
         </div>
 
