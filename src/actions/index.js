@@ -51,3 +51,11 @@ export const changeHeadingSize = (dispatch, widgetId, newSize) => (
     })
 )
 
+
+export const headingTextChanged = (dispatch, widgetId, newText) => (
+    dispatch({
+        type: constants.HEADING_TEXT_CHANGED,
+        id: widgetId,
+        text: newText})
+)
+

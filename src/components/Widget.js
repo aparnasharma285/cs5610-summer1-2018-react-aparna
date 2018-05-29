@@ -36,10 +36,6 @@ export const Widget = ({widget, dispatch, deleteWidget, changeWidgetType}) => {
 
             <div>
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
-                {widget.widgetType==='List' &&  <List widget={widget}/>}
-                {widget.widgetType==='Link' &&  <Link widget={widget}/>}
-                {widget.widgetType==='Image' &&  <Image widget={widget}/>}
-                {widget.widgetType==='Paragraph' && <Paragraph widget={widget}/>}
             </div>
         </li>
     )
