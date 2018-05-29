@@ -8,7 +8,7 @@ const Paragraph = ({widget,paragraphTextChanged}) => {
     return(
     <div>
         <h1>Paragraph Widget</h1>
-        <input onChange={() => paragraphTextChanged(widget.id, inputElement.value)}
+        <textarea onChange={() => paragraphTextChanged(widget.id, inputElement.value)}
                value={widget.text}
                ref={node => inputElement = node}/>
 

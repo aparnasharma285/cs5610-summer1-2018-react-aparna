@@ -120,6 +120,18 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                 preview: state.preview,
                 topicId: state.topicId
             }
+
+        case constants.LIST_TYPE_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.listType = action.listType
+                    }
+                    return Object.assign({}, widget)
+                }),
+                preview: state.preview,
+                topicId: state.topicId
+            }
         default:
             return state
     }
