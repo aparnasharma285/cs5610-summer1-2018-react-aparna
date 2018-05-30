@@ -2,30 +2,47 @@ import React from 'react'
 import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
-const Link = ({widget,widgetTextChanged,linkUrlChanged, widgetNameChanged, preview}) => {
+const Link = ({widget, widgetTextChanged, linkUrlChanged, widgetNameChanged, preview}) => {
     let inputElement
     let inputText
     let inputName
-    return(
+    return (
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
-            <h1>Link Widget</h1>
-            <input className="form-control" onChange={() => linkUrlChanged(widget.id, inputElement.value)}
-                   value={widget.href}
-                   ref={node => inputElement = node}/>
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label">Link Url</label>
+                    <div className="col-sm-10">
+                        <input placeholder='Link Url' className="form-control"
+                               onChange={() => linkUrlChanged(widget.id, inputElement.value)}
+                               value={widget.href}
+                               ref={node => inputElement = node}/>
+                    </div>
+                </div>
 
-            <input className="form-control" onChange={() => widgetTextChanged(widget.id, inputText.value)}
-                   value={widget.text}
-                   ref={node => inputText = node}/>
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label">Link Text</label>
+                    <div className="col-sm-10">
+                        <input placeholder='Link Text' className="form-control"
+                               onChange={() => widgetTextChanged(widget.id, inputText.value)}
+                               value={widget.text}
+                               ref={node => inputText = node}/>
+                    </div>
+                </div>
 
-                <input className="form-control" placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
-                       value={widget.name}
-                       ref={node => inputName = node}/>
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label">Widget Name</label>
+                    <div className="col-sm-10">
+                        <input className="form-control" placeholder='Widget name'
+                               onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                               value={widget.name}
+                               ref={node => inputName = node}/>&nbsp;
+                    </div>
+                </div>
 
-            <h3>Preview</h3>
+                <h3><b>Preview</b></h3>
             </div>
             <div className='wbdv-widget-preview'>
-            <a href={widget.href} target="_blank">{widget.text}</a>
+                <a href={widget.href} target="_blank" className='wbdv-link-preview'>{widget.text}</a>
             </div>
         </div>
 
@@ -34,10 +51,10 @@ const Link = ({widget,widgetTextChanged,linkUrlChanged, widgetNameChanged, previ
 }
 
 const dispatchToPropsMapper = dispatch => ({
-    linkUrlChanged : (widegtId, newUrl) => actions.linkUrlChanged(dispatch,widegtId,newUrl),
-    widgetTextChanged: (widgetId, newText) => actions.widgetTextChanged(dispatch,widgetId,newText),
+    linkUrlChanged: (widegtId, newUrl) => actions.linkUrlChanged(dispatch, widegtId, newUrl),
+    widgetTextChanged: (widgetId, newText) => actions.widgetTextChanged(dispatch, widgetId, newText),
     widgetMoveDown: (widget) => actions.widgetMoveDown(dispatch, widget),
-    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch,widgetId,newName)
+    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch, widgetId, newName)
 })
 const stateToPropsMapper = state => ({
     preview: state.preview

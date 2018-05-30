@@ -43,12 +43,9 @@ export const Widget = ({widget, widgets, widgetsCount, dispatch, deleteWidget, c
                     <option>Image</option>
                     <option>List</option>
                 </select> &nbsp;
-
                 <button className='btn btn-danger wbdv-widget-delete-btn' onClick={e => (deleteWidget(widget.id))}>
                     <i className='fa fa-times'></i>
                 </button>
-
-
                 </div>
             </div>
 

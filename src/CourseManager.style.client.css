@@ -152,6 +152,7 @@ a:hover{
 
 #saveWidgetsBtn{
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .wbdv-widget-delete-btn{
@@ -229,4 +230,20 @@ input:checked + .slider:before {
 }
 .card-header{
     background-color: #FFFFFF;
+}
+.wbdv-preview-label{
+    color: #414b4f;
+    float: right;
+}
+.wbdv-link-preview{
+    color:#2990ea;
+}
+
+.wbdv-link-preview:hover{
+    color:#2990ea;
+}
+.wbdv-new-widget{
+    color: red;
+    background-color: #FFFFFF;
+    border-radius: 50%;
 }

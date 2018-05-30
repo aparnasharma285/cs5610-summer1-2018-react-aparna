@@ -15,23 +15,40 @@ const List = ({widget, widgetTextChanged, changeListType, widgetNameChanged, pre
     return (
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
-                <h1>List Widget</h1>
-                <textarea  className="form-control" type='text' onChange={() => widgetTextChanged(widget.id, inputText.value)}
+
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label">List Items</label>
+                    <div className="col-sm-10">
+                <textarea placeholder='List Text' className="form-control" type='text'
+                          onChange={() => widgetTextChanged(widget.id, inputText.value)}
                           value={widget.text}
                           ref={node => inputText = node}/>
+                    </div>
+                </div>
 
-                <select className="form-control" onChange={e => (changeListType(widget.id, listType.value))}
-                        value={widget.listType}
-                        ref={node => listType = node}>
-                    <option value="ORDERED">Ordered List</option>
-                    <option value="UNORDERED">Unordered List</option>
-                </select>
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label">List Type</label>
+                    <div className="col-sm-10">
+                        <select className="form-control" onChange={e => (changeListType(widget.id, listType.value))}
+                                value={widget.listType}
+                                ref={node => listType = node}>
+                            <option value="ORDERED">Ordered List</option>
+                            <option value="UNORDERED">Unordered List</option>
+                        </select>
+                    </div>
+                </div>
 
-                <input className="form-control" placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                <div className="form-group row">
+                    <label className="col-sm-2 col-form-label">Widget Name</label>
+                    <div className="col-sm-10">
+                <input className="form-control" placeholder='Widget name'
+                       onChange={() => widgetNameChanged(widget.id, inputName.value)}
                        value={widget.name}
-                       ref={node => inputName = node}/>
+                       ref={node => inputName = node}/>&nbsp;
+                    </div>
+                </div>
 
-                <h3>Preview</h3>
+                <h3><b>Preview</b></h3>
             </div>
             <div className='wbdv-widget-preview'>
                 {widget.listType == 'ORDERED' && <ol>{listItems}</ol>}
@@ -45,7 +62,7 @@ const dispatchToPropsMapper = dispatch => ({
     widgetTextChanged: (widgetId, newText) => actions.widgetTextChanged(dispatch, widgetId, newText),
     changeListType: (widgetId, newListType) => actions.changeListType(dispatch, widgetId, newListType),
     widgetMoveDown: (widget) => actions.widgetMoveDown(dispatch, widget),
-    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch,widgetId,newName)
+    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch, widgetId, newName)
 
 })
 const stateToPropsMapper = state => ({
