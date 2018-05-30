@@ -2,9 +2,10 @@ import React from 'react'
 import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
-const Link = ({widget,linkTextChanged,linkUrlChanged,preview}) => {
+const Link = ({widget,widgetTextChanged,linkUrlChanged, widgetNameChanged, preview}) => {
     let inputElement
     let inputText
+    let inputName
     return(
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
@@ -13,9 +14,13 @@ const Link = ({widget,linkTextChanged,linkUrlChanged,preview}) => {
                    value={widget.href}
                    ref={node => inputElement = node}/>
 
-            <input onChange={() => linkTextChanged(widget.id, inputText.value)}
+            <input onChange={() => widgetTextChanged(widget.id, inputText.value)}
                    value={widget.text}
                    ref={node => inputText = node}/>
+
+                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                       value={widget.name}
+                       ref={node => inputName = node}/>
 
             <h3>Preview</h3>
             </div>
@@ -30,7 +35,9 @@ const Link = ({widget,linkTextChanged,linkUrlChanged,preview}) => {
 
 const dispatchToPropsMapper = dispatch => ({
     linkUrlChanged : (widegtId, newUrl) => actions.linkUrlChanged(dispatch,widegtId,newUrl),
-    linkTextChanged: (widgetId, newText) => actions.linkTextChanged(dispatch,widgetId,newText)
+    widgetTextChanged: (widgetId, newText) => actions.widgetTextChanged(dispatch,widgetId,newText),
+    widgetMoveDown: (widget) => actions.widgetMoveDown(dispatch, widget),
+    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch,widgetId,newName)
 })
 const stateToPropsMapper = state => ({
     preview: state.preview

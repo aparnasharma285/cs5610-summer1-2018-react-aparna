@@ -2,13 +2,14 @@ import React from 'react'
 import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
-const Heading = ({widget, changeHeadingSize, headingTextChanged, preview}) => {
+const Heading = ({widget, changeHeadingSize, widgetTextChanged, widgetNameChanged, preview}) => {
     let selectElem
     let inputElement
+    let inputName
     return (
         <div>
             <div className='wbdv-widegt-form' style={{display: preview ? 'none' : 'block'}}>
-                <input onChange={() => headingTextChanged(widget.id, inputElement.value)}
+                <input onChange={() => widgetTextChanged(widget.id, inputElement.value)}
                        value={widget.text}
                        ref={node => inputElement = node}/>
 
@@ -19,6 +20,10 @@ const Heading = ({widget, changeHeadingSize, headingTextChanged, preview}) => {
                     <option value="2">Heading 2</option>
                     <option value="3">Heading 3</option>
                 </select>
+
+                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                       value={widget.name}
+                       ref={node => inputName = node}/>
 
                 <h3>Preview</h3>
 
@@ -34,8 +39,8 @@ const Heading = ({widget, changeHeadingSize, headingTextChanged, preview}) => {
 
 const dispatchToPropsMapper = dispatch => ({
     changeHeadingSize: (widgetId, newSize) => actions.changeHeadingSize(dispatch, widgetId, newSize),
-    headingTextChanged: (widgetId, newText) => actions.headingTextChanged(dispatch, widgetId, newText)
-
+    widgetTextChanged: (widgetId, newText) => actions.widgetTextChanged(dispatch, widgetId, newText),
+    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch,widgetId,newName)
 })
 const stateToPropsMapper = state => ({
     preview: state.preview

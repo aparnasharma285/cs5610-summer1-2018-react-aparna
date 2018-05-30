@@ -3,9 +3,10 @@ import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
 
-const List = ({widget, listTextChanged, changeListType,preview}) => {
+const List = ({widget, widgetTextChanged, changeListType, widgetNameChanged, preview}) => {
     let inputText
     let listType
+    let inputName
     let list = widget.text.split('\n');
     var listItems = list.map((item) => {
         return (<li>{item}</li>)
@@ -15,7 +16,7 @@ const List = ({widget, listTextChanged, changeListType,preview}) => {
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
                 <h1>List Widget</h1>
-                <textarea type='text' onChange={() => listTextChanged(widget.id, inputText.value)}
+                <textarea type='text' onChange={() => widgetTextChanged(widget.id, inputText.value)}
                           value={widget.text}
                           ref={node => inputText = node}/>
 
@@ -25,6 +26,10 @@ const List = ({widget, listTextChanged, changeListType,preview}) => {
                     <option value="ORDERED">Ordered List</option>
                     <option value="UNORDERED">Unordered List</option>
                 </select>
+
+                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                       value={widget.name}
+                       ref={node => inputName = node}/>
 
                 <h3>Preview</h3>
             </div>
@@ -37,8 +42,10 @@ const List = ({widget, listTextChanged, changeListType,preview}) => {
 }
 
 const dispatchToPropsMapper = dispatch => ({
-    listTextChanged: (widgetId, newText) => actions.listTextChanged(dispatch, widgetId, newText),
-    changeListType: (widgetId, newListType) => actions.changeListType(dispatch, widgetId, newListType)
+    widgetTextChanged: (widgetId, newText) => actions.widgetTextChanged(dispatch, widgetId, newText),
+    changeListType: (widgetId, newListType) => actions.changeListType(dispatch, widgetId, newListType),
+    widgetMoveDown: (widget) => actions.widgetMoveDown(dispatch, widget),
+    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch,widgetId,newName)
 
 })
 const stateToPropsMapper = state => ({

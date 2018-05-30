@@ -51,26 +51,12 @@ export const changeHeadingSize = (dispatch, widgetId, newSize) => (
     })
 )
 
-
-export const headingTextChanged = (dispatch, widgetId, newText) => (
-    dispatch({
-        type: constants.WIDGET_TEXT_CHANGED,
-        id: widgetId,
-        text: newText})
-)
-
 export const previewWidget =(dispatch) =>(
     dispatch({
         type : constants.PREVIEW
     })
 )
 
-export const paragraphTextChanged=(dispatch, widgetId, newText) => (
-    dispatch({
-        type: constants.WIDGET_TEXT_CHANGED,
-        id: widgetId,
-        text: newText})
-)
 
 export const imageUrlChanged=(dispatch, widgetId, newUrl) => (
     dispatch({
@@ -86,15 +72,8 @@ export const linkUrlChanged=(dispatch, widgetId, newUrl) => (
         href: newUrl})
 )
 
-export const linkTextChanged=(dispatch, widgetId, newText) => (
-    dispatch({
-        type: constants.WIDGET_TEXT_CHANGED,
-        id: widgetId,
-        text: newText})
-)
 
-
-export const listTextChanged=(dispatch, widgetId, newText) => (
+export const widgetTextChanged=(dispatch, widgetId, newText) => (
     dispatch({
         type: constants.WIDGET_TEXT_CHANGED,
         id: widgetId,
@@ -120,5 +99,13 @@ export const widgetMoveDown =(dispatch, widget) => (
     dispatch({
         type: constants.MOVE_DOWN,
         widget: widget
+    })
+)
+
+export const widgetNameChanged =(dispatch, widgetId, newName) => (
+    dispatch({
+        type: constants.WIDGET_NAME_CHANGED,
+        id: widgetId,
+        name: newName
     })
 )

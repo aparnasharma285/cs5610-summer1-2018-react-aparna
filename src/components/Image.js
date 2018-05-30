@@ -2,8 +2,9 @@ import React from 'react'
 import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
-const Image = ({widget, imageUrlChanged,preview}) => {
+const Image = ({widget, imageUrlChanged, widgetNameChanged, preview}) => {
     let inputElement
+    let inputName
     return (
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
@@ -11,6 +12,10 @@ const Image = ({widget, imageUrlChanged,preview}) => {
                 <input onChange={() => imageUrlChanged(widget.id, inputElement.value)}
                        value={widget.src}
                        ref={node => inputElement = node}/>
+
+                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                       value={widget.name}
+                       ref={node => inputName = node}/>
 
                 <h3>Preview</h3>
             </div>
@@ -22,7 +27,9 @@ const Image = ({widget, imageUrlChanged,preview}) => {
 }
 
 const dispatchToPropsMapper = dispatch => ({
-    imageUrlChanged: (widegtId, newUrl) => actions.imageUrlChanged(dispatch, widegtId, newUrl)
+    imageUrlChanged: (widegtId, newUrl) => actions.imageUrlChanged(dispatch, widegtId, newUrl),
+    widgetMoveDown: (widget) => actions.widgetMoveDown(dispatch, widget),
+    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch,widgetId,newName)
 })
 const stateToPropsMapper = state => ({
     preview: state.preview

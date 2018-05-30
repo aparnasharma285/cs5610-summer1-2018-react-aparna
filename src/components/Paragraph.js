@@ -3,15 +3,20 @@ import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
 
-const Paragraph = ({widget, paragraphTextChanged,preview}) => {
+const Paragraph = ({widget, widgetTextChanged, widgetNameChanged, preview}) => {
     let inputElement
+    let inputName
     return (
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
                 <h1>Paragraph Widget</h1>
-                <textarea onChange={() => paragraphTextChanged(widget.id, inputElement.value)}
+                <textarea onChange={() => widgetTextChanged(widget.id, inputElement.value)}
                           value={widget.text}
                           ref={node => inputElement = node}/>
+
+                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                       value={widget.name}
+                       ref={node => inputName = node}/>
 
                 <h3>Preview</h3>
             </div>
@@ -23,7 +28,9 @@ const Paragraph = ({widget, paragraphTextChanged,preview}) => {
 }
 
 const dispatchToPropsMapper = dispatch => ({
-    paragraphTextChanged: (widgetId, newText) => actions.paragraphTextChanged(dispatch, widgetId, newText)
+    widgetTextChanged: (widgetId, newText) => actions.widgetTextChanged(dispatch, widgetId, newText),
+    widgetMoveDown: (widget) => actions.widgetMoveDown(dispatch, widget),
+    widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch,widgetId,newName)
 
 })
 
