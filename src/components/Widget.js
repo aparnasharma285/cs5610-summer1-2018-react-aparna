@@ -29,10 +29,6 @@ export const Widget = ({widget, widgets, widgetsCount, dispatch, deleteWidget, c
                     {widget.widgetType} Widget
                 </h3>
                 <div className='wbdv-widget-edit-panel form-inline'>
-                    <button hidden={preview && editWidgetId == widget.id} className='btn btn-success wbdv-widget-edit-btn' onClick={() => {
-                        widgetEdit(widget.id)
-                    }}><i className='fa fa-pencil'></i></button>
-                    &nbsp;
 
                     <button hidden={!preview && editWidgetId != widget.id}className='btn btn-success wbdv-widget-edit-done-btn' onClick={() => {
                         widgetEditDone(widget.id)
@@ -64,6 +60,10 @@ export const Widget = ({widget, widgets, widgetsCount, dispatch, deleteWidget, c
 
 
             <div className='card-body'>
+                <button hidden={editWidgetId == widget.id} className='btn btn-success wbdv-widget-edit-btn' onClick={() => {
+                    widgetEdit(widget.id)
+                }}><i className='fa fa-pencil'></i></button>
+                &nbsp;
                 {widget.widgetType === 'Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType === 'Paragraph' && <ParagraphContainer widget={widget}/>}
                 {widget.widgetType === 'Image' && <ImageContainer widget={widget}/>}

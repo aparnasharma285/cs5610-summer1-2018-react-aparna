@@ -256,4 +256,5 @@ input:checked + .slider:before {
 }
 .wbdv-widget-edit-btn{
     border-radius: 5px;
+    float: right;
 }

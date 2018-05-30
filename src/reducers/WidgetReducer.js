@@ -2,16 +2,17 @@ import * as constants from "../constants";
 import 'array.prototype.move';
 
 
-export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false}, action) => {
+export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, action) => {
     let newState
     switch (action.type) {
 
-        case constants.ADD:
+        case constants.ADD:{
+            let widgetId = state.widgets.length + 1
             return {
                 widgets: [
                     ...state.widgets,
                     {
-                        id: state.widgets.length + 1,
+                        id: widgetId,
                         text: 'New Widget',
                         widgetType: 'Heading',
                         size: '1'
@@ -19,8 +20,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                 ],
                 preview: state.preview,
                 topicId: state.topicId,
-                editWidgetId:state.editWidgetId
-            }
+                editWidgetId:widgetId
+            }}
 
         case constants.DELETE:
             return {
@@ -61,7 +62,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
         case constants.EDIT_WIDGET:
             return{
                 widgets: state.widgets,
-                preview: !state.preview,
+                preview: state.preview,
                 topicId: state.topicId,
                 editWidgetId: action.id
             }
@@ -69,7 +70,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
         case constants.EDIT_WIDGET_DONE:
             return{
                 widgets: state.widgets,
-                preview: !state.preview,
+                preview: state.preview,
                 topicId: state.topicId,
                 editWidgetId: ''
             }
