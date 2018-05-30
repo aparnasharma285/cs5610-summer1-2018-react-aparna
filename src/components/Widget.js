@@ -60,7 +60,7 @@ export const Widget = ({widget, widgets, widgetsCount, dispatch, deleteWidget, c
 
 
             <div className='card-body'>
-                <button hidden={editWidgetId == widget.id} className='btn btn-success wbdv-widget-edit-btn' onClick={() => {
+                <button hidden={!preview || editWidgetId == widget.id} className='btn btn-success wbdv-widget-edit-btn' onClick={() => {
                     widgetEdit(widget.id)
                 }}><i className='fa fa-pencil'></i></button>
                 &nbsp;
