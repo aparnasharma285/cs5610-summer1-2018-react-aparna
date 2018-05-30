@@ -10,11 +10,11 @@ const Paragraph = ({widget, widgetTextChanged, widgetNameChanged, preview}) => {
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
                 <h1>Paragraph Widget</h1>
-                <textarea onChange={() => widgetTextChanged(widget.id, inputElement.value)}
+                <textarea className="form-control" onChange={() => widgetTextChanged(widget.id, inputElement.value)}
                           value={widget.text}
                           ref={node => inputElement = node}/>
 
-                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                <input className="form-control" placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
                        value={widget.name}
                        ref={node => inputName = node}/>
 

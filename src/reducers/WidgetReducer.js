@@ -103,7 +103,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
             widgets: state.widgets.map(widget => {
                 if ((widget.name == action.name) && (widget.id != action.id)) {
                     flag = 1
-                    alert("same")
+                    alert("Oops Sorry!! This widget name already exists")
                 }
             })
             if (flag == 1) {

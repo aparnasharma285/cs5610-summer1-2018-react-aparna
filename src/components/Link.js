@@ -10,15 +10,15 @@ const Link = ({widget,widgetTextChanged,linkUrlChanged, widgetNameChanged, previ
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
             <h1>Link Widget</h1>
-            <input onChange={() => linkUrlChanged(widget.id, inputElement.value)}
+            <input className="form-control" onChange={() => linkUrlChanged(widget.id, inputElement.value)}
                    value={widget.href}
                    ref={node => inputElement = node}/>
 
-            <input onChange={() => widgetTextChanged(widget.id, inputText.value)}
+            <input className="form-control" onChange={() => widgetTextChanged(widget.id, inputText.value)}
                    value={widget.text}
                    ref={node => inputText = node}/>
 
-                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                <input className="form-control" placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
                        value={widget.name}
                        ref={node => inputName = node}/>
 

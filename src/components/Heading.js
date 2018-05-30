@@ -9,11 +9,11 @@ const Heading = ({widget, changeHeadingSize, widgetTextChanged, widgetNameChange
     return (
         <div>
             <div className='wbdv-widegt-form' style={{display: preview ? 'none' : 'block'}}>
-                <input onChange={() => widgetTextChanged(widget.id, inputElement.value)}
+                <input className="form-control" onChange={() => widgetTextChanged(widget.id, inputElement.value)}
                        value={widget.text}
                        ref={node => inputElement = node}/>
 
-                <select onChange={e => (changeHeadingSize(widget.id, selectElem.value))}
+                <select className="form-control" onChange={e => (changeHeadingSize(widget.id, selectElem.value))}
                         value={widget.size}
                         ref={node => selectElem = node}>
                     <option value="1">Heading 1</option>
@@ -21,7 +21,7 @@ const Heading = ({widget, changeHeadingSize, widgetTextChanged, widgetNameChange
                     <option value="3">Heading 3</option>
                 </select>
 
-                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                <input  className="form-control" placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
                        value={widget.name}
                        ref={node => inputName = node}/>
 

@@ -29,7 +29,7 @@ class WidgetList extends React.Component {
                     <span className="slider round"></span>
                 </label>
 
-                {this.props.widgets.map(widget => (<WidgetContainer key={widget.id} widget={widget}/>))}
+                {this.props.widgets.map((widget,index) => (<WidgetContainer widgetindex={index} key={widget.id} widget={widget}/>))}
                 <button onClick={this.props.addWidget}>Add</button>
 
             </div>

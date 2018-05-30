@@ -9,11 +9,11 @@ const Image = ({widget, imageUrlChanged, widgetNameChanged, preview}) => {
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
                 <h1>Image Widget</h1>
-                <input onChange={() => imageUrlChanged(widget.id, inputElement.value)}
+                <input className="form-control" onChange={() => imageUrlChanged(widget.id, inputElement.value)}
                        value={widget.src}
                        ref={node => inputElement = node}/>
 
-                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                <input className="form-control" placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
                        value={widget.name}
                        ref={node => inputName = node}/>
 

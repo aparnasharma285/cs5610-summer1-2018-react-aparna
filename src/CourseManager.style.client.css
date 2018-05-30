@@ -211,3 +211,22 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
+.wbdv-widget-up-btn{
+    border-radius: 9px;
+}
+.wbdv-widget-down-btn{
+    border-radius: 9px;
+}
+.wbdv-widget-edit-panel{
+    float: right;
+}
+.switch{
+    float: right;
+}
+.card{
+    background-color: #FFFFFF;
+    border-color: #E8E8E8;
+}
+.card-header{
+    background-color: #FFFFFF;
+}

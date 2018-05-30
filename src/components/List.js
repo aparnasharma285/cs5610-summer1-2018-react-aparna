@@ -16,18 +16,18 @@ const List = ({widget, widgetTextChanged, changeListType, widgetNameChanged, pre
         <div>
             <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
                 <h1>List Widget</h1>
-                <textarea type='text' onChange={() => widgetTextChanged(widget.id, inputText.value)}
+                <textarea  className="form-control" type='text' onChange={() => widgetTextChanged(widget.id, inputText.value)}
                           value={widget.text}
                           ref={node => inputText = node}/>
 
-                <select onChange={e => (changeListType(widget.id, listType.value))}
+                <select className="form-control" onChange={e => (changeListType(widget.id, listType.value))}
                         value={widget.listType}
                         ref={node => listType = node}>
                     <option value="ORDERED">Ordered List</option>
                     <option value="UNORDERED">Unordered List</option>
                 </select>
 
-                <input placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
+                <input className="form-control" placeholder='Widget name' onChange={() => widgetNameChanged(widget.id, inputName.value)}
                        value={widget.name}
                        ref={node => inputName = node}/>
 
