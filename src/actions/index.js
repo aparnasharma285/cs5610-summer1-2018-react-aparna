@@ -109,3 +109,17 @@ export const widgetNameChanged =(dispatch, widgetId, newName) => (
         name: newName
     })
 )
+
+export const widgetEdit =(dispatch, widgetId) => (
+    dispatch({
+        type: constants.EDIT_WIDGET,
+        id: widgetId
+    })
+)
+
+export const widgetEditDone =(dispatch, widgetId) => (
+    dispatch({
+        type: constants.EDIT_WIDGET_DONE,
+        id: widgetId
+    })
+)

@@ -2,13 +2,13 @@ import React from 'react'
 import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
-const Heading = ({widget, changeHeadingSize, widgetTextChanged, widgetNameChanged, preview}) => {
+const Heading = ({widget, changeHeadingSize, widgetTextChanged, widgetNameChanged, preview, editWidgetId}) => {
     let selectElem
     let inputElement
     let inputName
     return (
         <div>
-            <div className='wbdv-widegt-form' style={{display: preview ? 'none' : 'block'}}>
+            <div className='wbdv-widegt-form' style={{display: (preview && editWidgetId != widget.id) ? 'none' : 'block'}}>
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label">Heading Text</label>
                     <div className="col-sm-10">
@@ -61,7 +61,8 @@ const dispatchToPropsMapper = dispatch => ({
     widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch, widgetId, newName)
 })
 const stateToPropsMapper = state => ({
-    preview: state.preview
+    preview: state.preview,
+    editWidgetId:state.editWidgetId
 })
 
 export const HeadingContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Heading)

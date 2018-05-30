@@ -247,3 +247,13 @@ input:checked + .slider:before {
     background-color: #FFFFFF;
     border-radius: 50%;
 }
+.wbdv-widget-types{
+    border-radius: 5px;
+}
+
+.form-control{
+    border-radius: 5px;
+}
+.wbdv-widget-edit-btn{
+    border-radius: 5px;
+}

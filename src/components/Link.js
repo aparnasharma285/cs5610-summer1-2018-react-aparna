@@ -2,13 +2,13 @@ import React from 'react'
 import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
-const Link = ({widget, widgetTextChanged, linkUrlChanged, widgetNameChanged, preview}) => {
+const Link = ({widget, widgetTextChanged, linkUrlChanged, widgetNameChanged, preview, editWidgetId}) => {
     let inputElement
     let inputText
     let inputName
     return (
         <div>
-            <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
+            <div className='wbdv-widget-form' style={{display: (preview && editWidgetId != widget.id) ? 'none' : 'block'}}>
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label">Link Url</label>
                     <div className="col-sm-10">
@@ -57,7 +57,8 @@ const dispatchToPropsMapper = dispatch => ({
     widgetNameChanged: (widgetId, newName) => actions.widgetNameChanged(dispatch, widgetId, newName)
 })
 const stateToPropsMapper = state => ({
-    preview: state.preview
+    preview: state.preview,
+    editWidgetId:state.editWidgetId
 })
 
 export const LinkContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Link)

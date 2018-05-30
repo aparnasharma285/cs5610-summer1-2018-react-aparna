@@ -3,12 +3,12 @@ import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
 
-const Paragraph = ({widget, widgetTextChanged, widgetNameChanged, preview}) => {
+const Paragraph = ({widget, widgetTextChanged, widgetNameChanged, preview, editWidgetId}) => {
     let inputElement
     let inputName
     return (
         <div>
-            <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
+            <div className='wbdv-widget-form' style={{display: (preview && editWidgetId != widget.id) ? 'none' : 'block'}}>
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label">Paragraph Text</label>
                     <div className="col-sm-10">
@@ -46,7 +46,8 @@ const dispatchToPropsMapper = dispatch => ({
 
 
 const stateToPropsMapper = state => ({
-    preview: state.preview
+    preview: state.preview,
+    editWidgetId:state.editWidgetId
 })
 
 export const ParagraphContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(Paragraph)

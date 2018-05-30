@@ -27,7 +27,7 @@ class WidgetList extends React.Component {
                 <i className="fa fa-3x fa-plus-circle wbdv-new-widget" onClick={this.props.addWidget}></i>&nbsp;
                 <label className="wbdv-preview-label"><b>Preview</b> &nbsp;
                 <label className="switch">
-                    <input type="checkbox" onClick={this.props.previewWidget}/>
+                    <input type="checkbox" onClick={this.props.previewWidget} checked={this.props.preview}/>
                     <span className="slider round"></span>
                 </label></label>
 

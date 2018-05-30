@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import * as actions from "../actions/index";
 
 
-const List = ({widget, widgetTextChanged, changeListType, widgetNameChanged, preview}) => {
+const List = ({widget, widgetTextChanged, changeListType, widgetNameChanged, preview, editWidgetId}) => {
     let inputText
     let listType
     let inputName
@@ -14,12 +14,12 @@ const List = ({widget, widgetTextChanged, changeListType, widgetNameChanged, pre
 
     return (
         <div>
-            <div className='wbdv-widget-form' style={{display: preview ? 'none' : 'block'}}>
+            <div className='wbdv-widget-form' style={{display: (preview && editWidgetId != widget.id) ? 'none' : 'block'}}>
 
                 <div className="form-group row">
                     <label className="col-sm-2 col-form-label">List Items</label>
                     <div className="col-sm-10">
-                <textarea placeholder='List Text' className="form-control" type='text'
+                <textarea placeholder='List Items' className="form-control" type='text'
                           onChange={() => widgetTextChanged(widget.id, inputText.value)}
                           value={widget.text}
                           ref={node => inputText = node}/>
@@ -66,7 +66,8 @@ const dispatchToPropsMapper = dispatch => ({
 
 })
 const stateToPropsMapper = state => ({
-    preview: state.preview
+    preview: state.preview,
+    editWidgetId:state.editWidgetId
 })
 
 export const ListContainer = connect(stateToPropsMapper, dispatchToPropsMapper)(List)

@@ -18,7 +18,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     }
                 ],
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.DELETE:
@@ -27,14 +28,16 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     widget.id !== action.id
                 )),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.FIND:
             return {
                 widgets: action.widgets,
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.SAVE:
@@ -44,21 +47,38 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                 headers: {
                     'content-type': 'application/json'
                 }
-            })
+            }).then(alert("Widgets Saved"))
             return state
 
         case constants.PREVIEW :
             return {
                 widgets: state.widgets,
                 preview: !state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
+        case constants.EDIT_WIDGET:
+            return{
+                widgets: state.widgets,
+                preview: !state.preview,
+                topicId: state.topicId,
+                editWidgetId: action.id
+            }
+
+        case constants.EDIT_WIDGET_DONE:
+            return{
+                widgets: state.widgets,
+                preview: !state.preview,
+                topicId: state.topicId,
+                editWidgetId: ''
+            }
         case constants.ASSIGN_TOPIC_ID:
             return {
                 widgets: action.widgets,
                 preview: state.preview,
-                topicId: action.topicId
+                topicId: action.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.SELECT_WIDGET_TYPE:
@@ -70,7 +90,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     return true;
                 }),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
             return JSON.parse(JSON.stringify(newState))
 
@@ -83,7 +104,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     return Object.assign({}, widget)
                 }),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.WIDGET_TEXT_CHANGED:
@@ -95,7 +117,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     return Object.assign({}, widget)
                 }),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.WIDGET_NAME_CHANGED: {
@@ -117,7 +140,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                         return Object.assign({}, widget)
                     }),
                     preview: state.preview,
-                    topicId: state.topicId
+                    topicId: state.topicId,
+                    editWidgetId:state.editWidgetId
                 }
             }
         }
@@ -131,7 +155,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     return Object.assign({}, widget)
                 }),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.LINK_URL_CHANGED:
@@ -143,7 +168,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     return Object.assign({}, widget)
                 }),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.LIST_TYPE_CHANGED:
@@ -155,7 +181,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
                     return Object.assign({}, widget)
                 }),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
 
         case constants.MOVE_UP :
@@ -164,7 +191,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
             return {
                 widgets: (state.widgets.splice(0)),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
         case constants.MOVE_DOWN :
             index = state.widgets.indexOf(action.widget);
@@ -172,7 +200,8 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: false},
             return {
                 widgets: (state.widgets.splice(0)),
                 preview: state.preview,
-                topicId: state.topicId
+                topicId: state.topicId,
+                editWidgetId:state.editWidgetId
             }
         default:
             return state
