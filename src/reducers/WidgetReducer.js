@@ -56,7 +56,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
             })
 
             if(flag == 1){
-                alert("Taken")
+                alert("Widget name already taken")
                 return state
             } else{
             fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/widget/save/TID').replace('TID', state.topicId), {
@@ -65,7 +65,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
                 headers: {
                     'content-type': 'application/json'
                 }
-            }).then(alert("Widgets Saved"))
+            }).then(alert("Widgets successfully saved"))
             return state}
 
         case constants.PREVIEW :
