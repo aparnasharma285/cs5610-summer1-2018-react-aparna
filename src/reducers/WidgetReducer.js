@@ -24,6 +24,10 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
             }}
 
         case constants.DELETE:
+            var choice = window.confirm("Do you want to delete the widget?")
+            if(choice == false){
+                return state
+            }else{
             return {
                 widgets: state.widgets.filter(widget => (
                     widget.id !== action.id
@@ -31,7 +35,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
                 preview: state.preview,
                 topicId: state.topicId,
                 editWidgetId:state.editWidgetId
-            }
+            }}
 
         case constants.FIND:
             return {
@@ -45,7 +49,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
             let flag = 0
             widgets:state.widgets.map((widget)=>{
                 state.widgets.map((item)=>{
-                    if(widget.name == item.name && widget.id != item.id){
+                    if(widget.name == item.name && widget.id != item.id && widget.name != undefined){
                         flag = 1
                     }
                 })
