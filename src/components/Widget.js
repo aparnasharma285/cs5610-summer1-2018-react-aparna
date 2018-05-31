@@ -30,7 +30,7 @@ export const Widget = ({widget, widgets, widgetsCount, dispatch, deleteWidget, c
                 </h3>
                 <div className='wbdv-widget-edit-panel form-inline'>
 
-                    <button hidden={!preview && editWidgetId != widget.id}className='btn btn-success wbdv-widget-edit-done-btn' onClick={() => {
+                    <button hidden={editWidgetId != widget.id || !preview}className='btn btn-success wbdv-widget-edit-done-btn' onClick={() => {
                         widgetEditDone(widget.id)
                     }}><i className='fa fa-check'></i>&nbsp;Done</button>
                     &nbsp;
