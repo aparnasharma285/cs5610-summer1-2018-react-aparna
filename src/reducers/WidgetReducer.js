@@ -42,6 +42,19 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
             }
 
         case constants.SAVE:
+            let flag = 0
+            widgets:state.widgets.map((widget)=>{
+                state.widgets.map((item)=>{
+                    if(widget.name == item.name && widget.id != item.id){
+                        flag = 1
+                    }
+                })
+            })
+
+            if(flag == 1){
+                alert("Taken")
+                return state
+            } else{
             fetch(('https://cs5610-java-server-aparna.herokuapp.com/api/widget/save/TID').replace('TID', state.topicId), {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
@@ -49,7 +62,7 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
                     'content-type': 'application/json'
                 }
             }).then(alert("Widgets Saved"))
-            return state
+            return state}
 
         case constants.PREVIEW :
             return {
@@ -123,16 +136,6 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
             }
 
         case constants.WIDGET_NAME_CHANGED: {
-            let flag = 0
-            widgets: state.widgets.map(widget => {
-                if ((widget.name == action.name) && (widget.id != action.id)) {
-                    flag = 1
-                    alert("Oops Sorry!! This widget name already exists")
-                }
-            })
-            if (flag == 1) {
-                return state
-            } else {
                 return {
                     widgets: state.widgets.map(widget => {
                         if (widget.id === action.id) {
@@ -145,7 +148,6 @@ export const widgetReducer = (state = {widgets: [], topicId: 0, preview: true}, 
                     editWidgetId:state.editWidgetId
                 }
             }
-        }
 
         case constants.IMAGE_URL_CHANGED:
             return {
